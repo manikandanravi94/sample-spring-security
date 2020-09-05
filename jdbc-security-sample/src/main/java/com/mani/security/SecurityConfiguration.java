@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 /*
 spring security has its own authentication manager in which it will validate user
-we cant directly user authentication manager instead we can provide our convenient functionality by adding the
+we cant directly use authentication manager instead we can provide our convenient functionality by adding the
 authentication manager builder
 Spring security internally uses delegation filter(bunch of filters) to provide authentication and authorization
 
@@ -34,6 +34,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource);
+
+        //since it is using inmemory db we can get everything by default.. if we are using external dbs
+        //we can configure our specific query by using methods available in the auth builder.
 
                 //below is the way to used the default schema  configuration given by spring
 
